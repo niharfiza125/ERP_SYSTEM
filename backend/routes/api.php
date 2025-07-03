@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -32,7 +33,8 @@ Route::get('/reports/summary', [ReportController::class, 'summary']);
 Route::apiResource('departments', DepartmentController::class);
 Route::get('/reports/summary', [ReportController::class, 'summary']);
 Route::get('/reports/departments', [ReportController::class, 'departmentStats']); // ✅ Add this line
-
+Route::post('/admin/login', [AdminAuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/admin/logout', [AdminAuthController::class, 'logout']);
 // ✅ Test Route (Optional)
 Route::get('/test', function () {
     return response()->json(['message' => 'API is working!']);
