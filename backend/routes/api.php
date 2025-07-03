@@ -30,6 +30,9 @@ Route::apiResource('payments', PaymentController::class);
 Route::apiResource('expenses', ExpenseController::class);
 Route::get('/reports/summary', [ReportController::class, 'summary']);
 Route::apiResource('departments', DepartmentController::class);
+Route::get('/reports/summary', [ReportController::class, 'summary']);
+Route::get('/reports/departments', [ReportController::class, 'departmentStats']); // ✅ Add this line
+
 // ✅ Test Route (Optional)
 Route::get('/test', function () {
     return response()->json(['message' => 'API is working!']);
